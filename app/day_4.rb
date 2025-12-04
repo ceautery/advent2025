@@ -26,13 +26,18 @@ class Day_4 < Advent
 
     while(keep_going) do
       keep_going = false
+
       (0...input.length).each do |y|
         (0...input.first.length).each do |x|
-          if input[y][x] == "@" && neighbor_count(x, y) < 4
-            input[y][x] = "x"
-            total_removed += 1
-            keep_going = true
-          end
+          next unless input[y][x] == "@" && neighbor_count(x, y) < 4
+
+          # The puzzle description couches removing rolls in terms of "rounds", where you would identify all the rolls
+          # that can be removed this round, then remove them, similar to how you'd program a Conway's Game of Life app.
+          # In this puzzle, setting each roll to removed the first time it _can_ be gets you the same total as removing
+          # in bulk by rounds.
+          input[y][x] = "x"
+          total_removed += 1
+          keep_going = true
         end
       end
     end
