@@ -17,7 +17,7 @@ class Day_6 < Advent
 
   def part_2
     # I decided to use ruby's built-in matrix rotation Array#transpose, which
-    # requires a square array-of-arrays. The input lines are unevenm so the
+    # requires a square array-of-arrays. The input lines are uneven so the
     # first thing to do is pad them out to the same length
     max_line_length = input.map(&:length).max
     padded = input.map { |line| line.ljust(max_line_length).chars }
