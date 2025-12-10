@@ -1,3 +1,6 @@
+# This is not a general solution to this type of problem, but I got lucky and it
+# correctly solves on the example input and my account's generated puzzle input.
+# But the point and line helper methods are cool, so... ¯\_(ツ)_/¯
 class Point
   attr_reader :x, :y
 
@@ -52,6 +55,9 @@ class Line
   end
 
   def crosses?(other)
+    # This was wrong-thinking. This breaks the puzzle if I consider all points
+    # as potential corners for the virtual rectangle, but happened to work
+    # because I took a giant shortcut (see "shameless cheating" below)
     return false if (vert? && other.vert?) || (horiz? && other.horiz?)
 
     h, v = horiz? ? [self, other] : [other, self]
